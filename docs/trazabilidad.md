@@ -4,7 +4,7 @@ Modelos en `docs/modelos/`: 01_contexto, 02_casos_de_uso, 03_clases_dominio, 04_
 
 | ID | Modelo | Componente o archivo | Prueba | Evidencia |
 |---|---|---|---|---|
-| RF01 | 02_casos_de_uso, 06_componentes | `src/cargador.py` (`cargar_historia`) | `test_integracion.py::test_i1_tres_finales_desde_archivo_real` | `evidencia/ultima_ejecucion.txt` |
+| RF01 | 02_casos_de_uso, 06_componentes | `src/cargador.py` (`cargar_historia`) | `test_integracion.py::test_i1_deshacer_desde_cada_final` | `evidencia/ultima_ejecucion.txt` |
 | RF02 | 03_clases_dominio, 05_estados_sesion | `src/motor.py` (`Sesion.reiniciar`) | `test_motor.py::test_u5_reiniciar` | `evidencia/ultima_ejecucion.txt` |
 | RF03 | 04_secuencia_elegir_opcion | `src/consola.py` (`jugar`) | Demostración en video | Video de la demostración |
 | RF04 | 04_secuencia_elegir_opcion | `src/motor.py` (`opciones_habilitadas`) | `test_motor.py::test_u1_condiciones`, `test_e3_siempre_dos_opciones` | `evidencia/ultima_ejecucion.txt` |
@@ -24,5 +24,5 @@ Modelos en `docs/modelos/`: 01_contexto, 02_casos_de_uso, 03_clases_dominio, 04_
 | SC01 | 02_casos_de_uso, 03_clases_dominio, 04_secuencia_elegir_opcion, 05_estados_sesion | `src/motor.py`, `src/consola.py` | U6, U5 e I1 extendidos | `docs/cambio.md`, `docs/solicitud_de_cambio.pdf`, tags `version-inicial` y `version-final` |
 
 ## Versiones
-- Antes del cambio: tag `version-inicial` (commit [hash])
-- Después del cambio: tag `version-final` (commit [hash])
+- Antes del cambio: tag version-inicial(commitd91efc9)
+- Después del cambio: tag version-final(commit0254260)

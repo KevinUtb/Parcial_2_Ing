@@ -1,0 +1,18 @@
+RNF02 - Claridad de errores (9 categorías de error de contenido)
+Comando: python -m unittest -v tests/test_cargador.py
+Cada prueba comprueba que el mensaje contenga la causa y el campo o ID.
+
+test_archivo_con_bom_se_carga (test_cargador.TestCargador.test_archivo_con_bom_se_carga) ... ok
+test_ca03_destino_inexistente_rechaza_carga (test_cargador.TestCargador.test_ca03_destino_inexistente_rechaza_carga) ... ok
+test_historia_valida_no_tiene_errores (test_cargador.TestCargador.test_historia_valida_no_tiene_errores) ... ok
+test_u4_archivo_ilegible (test_cargador.TestCargador.test_u4_archivo_ilegible) ... ok
+test_u4_archivo_inexistente (test_cargador.TestCargador.test_u4_archivo_inexistente) ... ok
+test_u4_errores_de_contenido (test_cargador.TestCargador.test_u4_errores_de_contenido) ... ok
+test_u4_estructura_incorrecta (test_cargador.TestCargador.test_u4_estructura_incorrecta) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.004s
+
+OK
+
+RESULTADO: CUMPLE

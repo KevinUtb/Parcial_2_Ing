@@ -132,7 +132,17 @@ Los archivos `.mmd` se visualizan pegándolos en <https://mermaid.live> o con la
 - La validación se detiene en los campos de primer nivel: si falta `titulo`, `inicio`, `variables` o `escenas`, o tienen un tipo incorrecto, solo se informan esos errores y no los de las escenas.
 - Defecto pendiente: un `destino` o un `id` de opción que sea una lista (no texto) provoca un `TypeError` en vez de un `ErrorContenido` controlado.
 - No se verifica que todos los finales sean alcanzables ni que no existan bloqueos posibles; el bloqueo solo se informa durante la partida.
-- Pendiente: `evidencia/rnf02.txt` no existe y `evidencia/rnf03.txt` está vacío; ambos los cita `docs/requisitos.md`. `evidencia/rnf01.txt` sí existe.
+
+
+## Aportes por integrante
+
+| Integrante | Aportes |
+|---|---|
+| Valery Georgina Aurela Perez | Verificación del entorno (con Kevin); diagramas Mermaid (contexto, casos de uso, clases, secuencia, estados y componentes) y decisiones de arquitectura; informe; matriz de trazabilidad inicial; commits `3891d3f` y `935500e` (documentos PDF de la solicitud); parte del armado del ZIP. Los diagramas, el informe y la matriz se elaboraron con apoyo de la herramienta de IA declarada abajo. |
+| Kevin Hernando Acuña Luna | Verificación del entorno (con Valery); repositorio y estructura de carpetas; requisitos RF01 a RF11, RNF01 a RNF03, preguntas, supuestos y defecto de E3 (`2a7d3b9`, `add8309`); cargador y validador (`62be7b5`); motor `Sesion` y consola (`c6c9fce`); pruebas U1 a U5, bloqueo, validaciones, CA03, BOM e I1 (`e7cdb00`, `2c7c819`, `a93ac9c`); segunda historia *El faro apagado* y simulador de partidas del RNF01 (`754447a`); implementación del cambio SC01: requisitos RF12 a RF14, análisis de impacto, deshacer en motor y consola, pruebas U6, U5 e I1 extendidos y evidencias (`f8bd345`, `1e0b8c2`, `791ea79`, `0254260`); parte del armado del ZIP. |
 
 ## Herramientas de apoyo
-[Completar: bibliotecas (solo estándar de Python), fragmentos reutilizados y herramientas de IA usadas, para qué sirvieron y cómo se verificó el resultado.]
+
+**Fuentes y herramientas.** Biblioteca estándar de Python (`json`, `unittest`; en pruebas y scripts también `os`, `sys`, `random`, `collections`, `tempfile` y `copy`, licencia PSF); Git y GitHub para versionado; Mermaid para los diagramas; tablero Kanban en Trello para el backlog. El texto de la historia y sus reglas provienen de la guía del parcial; la solicitud de cambio, del documento *Solicitud de cambio del parcial*.
+
+**Herramientas de IA.** Se usó el asistente Claude (Anthropic) para redactar borradores de los diagramas Mermaid, el README, el informe (incluida su actualización tras SC01) y la matriz de trazabilidad, a partir del código del repositorio, de `docs/requisitos.md` y de `docs/cambio.md`. Los resultados se contrastaron con el código y con la ejecución de las pruebas y del simulador de partidas (RNF01). El código fuente, las pruebas y la segunda historia son trabajo propio de la pareja.

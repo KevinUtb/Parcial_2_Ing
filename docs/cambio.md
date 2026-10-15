@@ -1,8 +1,8 @@
 # Gestión del cambio SC01: deshacer la última decisión
 
 ## Versión de partida
-- Tag: `version-inicial` (commit: [hash])
-- Hora de recepción de la solicitud: [completar]
+- Tag: `version-inicial` (commit: d91efc9)
+- Hora de recepción de la solicitud: aprox. 00:12 del 15/10/2026 (hora 6; solicitud agregada en el commit 935500e)
 - Archivo original: `docs/solicitud_de_cambio.pdf`
 
 ## Solicitud recibida
@@ -33,7 +33,7 @@ elección válida. Alternativa descartada: pila de historial, por exceder el
 alcance pedido (un solo nivel, sin rehacer).
 
 ## Implementación y evidencia
-- Commits del cambio: [hashes]
+- Commits del cambio: f8bd345, 1e0b8c2, 791ea79, 0254260
 - Versión posterior: tag `version-final`
 - Pruebas: `test_u6_*` y `test_u5_reiniciar_elimina_historial` en
   `tests/test_motor.py`; `test_i1_deshacer_desde_cada_final` en
