@@ -12,7 +12,7 @@
 | RF06 | Una opción inexistente o no habilitada no modifica el estado. | Enviar un ID no habilitado deja escena y variables iguales. | N03 |
 | RF07 | El sistema conserva las variables modificadas durante la partida. | Tras un efecto, la siguiente elección evalúa el valor actualizado. | N04 |
 | RF08 | El sistema identifica los finales y termina la partida al alcanzarlos. | Al llegar a E4, E5 o E6, la sesión queda terminada sin opciones. | N05 |
-| RF09 | El sistema reinicia la partida restaurando escena y variables iniciales. | Tras un final y un reinicio, la sesión vuelve a E1 con variables en falso. | N05 |
+| RF09 | El sistema reinicia la partida restaurando escena y variables iniciales y eliminando el historial de retroceso. | Tras un final y un reinicio, la sesión vuelve a E1 con variables en falso y sin retroceso disponible. | N05 |
 | RF10 | El sistema rechaza un archivo inválido e indica causa y campo o ID. | Una copia con destino `E99` falla con un mensaje que nombra `E99`. | N06 |
 | RF11 | El sistema informa cuando una escena no final no tiene opciones habilitadas. | Se muestra el bloqueo y la opción de reiniciar. | N06 |
 
@@ -32,3 +32,7 @@
 | P02 | Supuesto | ¿Qué pasa si una escena no final queda sin opciones habilitadas? | Se informa el bloqueo y se permite reiniciar (RF11). |
 | P03 | Pregunta | ¿Se aceptan variables no declaradas en condiciones o efectos? | No. Se rechazan antes de iniciar la partida (RF10). |
 | D01 | Defecto | La regla "exactamente dos opciones en E3" depende del filtrado de condiciones y no está garantizada por la escena. | Se añade prueba de E3 con ambos valores de `conoce_origen` que verifica dos opciones visibles. Commit: [hash]. |
+
+| RF12 | El sistema permite deshacer la última elección válida, restaurando exactamente la escena y todas las variables anteriores a esa elección. | Desde E2, "Investigar archivo" lleva a E3 con `conoce_origen = verdadero`; deshacer devuelve a E2 con `conoce_origen = falso`. Desde E4, E5 o E6, deshacer regresa a E3 con los valores previos a esa elección. | SC01 (N03, N04) |
+| RF13 | El retroceso es de un solo nivel: no está disponible al comenzar, se consume al deshacer y se habilita de nuevo solo con una nueva elección válida. | Una partida nueva no puede deshacer. Tras deshacer, un segundo intento no cambia nada. Tras elegir "Continuar sin investigar", E3 muestra "Activar sin verificar" y "Cortar comunicación", y deshacer vuelve a estar disponible. | SC01 (N03, N04) |
+| RF14 | Una opción inexistente o no habilitada no modifica la sesión ni sustituye el historial de la última elección válida. | Tras elegir "Investigar archivo", enviar un ID inexistente o no habilitado deja la sesión igual, y deshacer sigue restaurando E2 con `conoce_origen = falso`. | SC01 (N03) |
