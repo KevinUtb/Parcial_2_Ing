@@ -23,3 +23,12 @@
 | RNF01 | Confiabilidad | Número de excepciones no controladas durante partidas simuladas | 0 en 1 000 partidas | Script `tests/simular_partidas.py` que juega 1 000 partidas aleatorias con `random.seed(42)` sobre la historia de referencia y la segunda historia. Cada elección se toma entre las opciones habilitadas. Cuenta las excepciones no capturadas y los bloqueos no reportados. | `evidencia/rnf01.txt` con la salida del script |
 | RNF02 | Claridad de errores | Porcentaje de errores de contenido que generan mensaje con causa y campo o ID | 100 % de las 9 categorías | Pruebas parametrizadas de U4 con un caso por categoría (archivo ilegible, campo ausente, inicio inexistente, ID de escena duplicado, ID de opción duplicado, destino inexistente, variable no declarada, valor no booleano, opciones incompatibles con el final). Cada prueba verifica que el mensaje contenga la causa y el identificador. | Registro de la última ejecución de `pytest` o `unittest` en `evidencia/rnf02.txt` |
 | RNF03 | Modificabilidad | Líneas de código del motor modificadas para cargar la segunda historia | 0 líneas | Etiquetar el commit de la versión final (`git tag version-final`). Añadir la segunda historia en `contenido/` y ejecutar `git diff --stat version-final -- src/`. El resultado debe estar vacío. | Salida de `git diff --stat` en `evidencia/rnf03.txt` |
+
+## Preguntas, supuestos y defectos
+
+| ID | Tipo | Descripción | Respuesta o corrección |
+|---|---|---|---|
+| P01 | Pregunta | ¿Debe permitirse retroceder siempre? | Conflicto entre escritora (retroceso permanente) y diseñador (decisiones irreversibles). Acuerdo provisional: no implementar retroceso en la versión inicial. Queda como pregunta abierta para el cliente. |
+| P02 | Supuesto | ¿Qué pasa si una escena no final queda sin opciones habilitadas? | Se informa el bloqueo y se permite reiniciar (RF11). |
+| P03 | Pregunta | ¿Se aceptan variables no declaradas en condiciones o efectos? | No. Se rechazan antes de iniciar la partida (RF10). |
+| D01 | Defecto | La regla "exactamente dos opciones en E3" depende del filtrado de condiciones y no está garantizada por la escena. | Se añade prueba de E3 con ambos valores de `conoce_origen` que verifica dos opciones visibles. Commit: [hash]. |
