@@ -22,19 +22,31 @@ def jugar(sesion):
         if sesion.es_final or sesion.bloqueada:
             print("\n--- FIN DE LA PARTIDA ---" if sesion.es_final
                   else "\n--- Bloqueo: no hay opciones disponibles en esta escena. ---")
-            resp = _preguntar("¿Jugar de nuevo? (s/n): ")
-            if resp and resp.lower() == "s":
+            if sesion.puede_deshacer:
+                texto = "¿Jugar de nuevo (s), deshacer la última decisión (d) o salir (n)? "
+            else:
+                texto = "¿Jugar de nuevo? (s/n): "
+            resp = _preguntar(texto)
+            resp = resp.lower() if resp else ""
+            if resp == "s":
                 sesion.reiniciar()
-                continue
-            return
+            elif resp == "d" and sesion.puede_deshacer:
+                sesion.deshacer()
+            else:
+                return
+            continue
 
         opciones = sesion.opciones_habilitadas()
         for n, op in enumerate(opciones, start=1):
             print(f"  {n}. {op['texto']}")
+        if sesion.puede_deshacer:
+            print("  0. Deshacer la última decisión")
         resp = _preguntar("Elige una opción: ")
         if resp is None:
             return
-        if resp.isdigit() and 1 <= int(resp) <= len(opciones):
+        if resp == "0" and sesion.puede_deshacer:
+            sesion.deshacer()
+        elif resp.isdigit() and 1 <= int(resp) <= len(opciones):
             sesion.elegir(opciones[int(resp) - 1]["id"])
         else:
             print("Opción no válida. Intenta de nuevo.")
