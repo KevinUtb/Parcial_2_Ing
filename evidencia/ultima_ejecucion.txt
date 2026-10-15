@@ -12,8 +12,13 @@ test_u1_condiciones (test_motor.TestMotor.test_u1_condiciones) ... ok
 test_u2_eleccion_valida (test_motor.TestMotor.test_u2_eleccion_valida) ... ok
 test_u3_opcion_invalida_no_cambia_estado (test_motor.TestMotor.test_u3_opcion_invalida_no_cambia_estado) ... ok
 test_u5_reiniciar (test_motor.TestMotor.test_u5_reiniciar) ... ok
+test_carga_valida_sin_errores (test_segunda_historia.TestSegundaHistoria.test_carga_valida_sin_errores) ... ok
+test_condicion_cambia_las_opciones (test_segunda_historia.TestSegundaHistoria.test_condicion_cambia_las_opciones) ... ok
+test_finales (test_segunda_historia.TestSegundaHistoria.test_finales) ... ok
+test_motor_no_contiene_datos_de_las_historias (test_segunda_historia.TestSegundaHistoria.test_motor_no_contiene_datos_de_las_historias)
+RNF03: el motor no conoce IDs ni variables de ninguna historia. ... ok
 
 ----------------------------------------------------------------------
-Ran 14 tests in 0.010s
+Ran 18 tests in 0.010s
 
 OK

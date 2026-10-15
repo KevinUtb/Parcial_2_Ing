@@ -1,0 +1,63 @@
+{
+  "titulo": "El faro apagado",
+  "inicio": "F1",
+  "variables": {
+    "tiene_linterna": false
+  },
+  "escenas": [
+    {
+      "id": "F1",
+      "texto": "Una tormenta se acerca y el faro del puerto está apagado. Junto a la puerta hay una linterna.",
+      "final": false,
+      "opciones": [
+        {
+          "id": "tomar_linterna",
+          "texto": "Tomar la linterna",
+          "destino": "F2",
+          "condiciones": {},
+          "efectos": { "tiene_linterna": true }
+        },
+        {
+          "id": "entrar_sin_linterna",
+          "texto": "Entrar sin linterna",
+          "destino": "F2",
+          "condiciones": {},
+          "efectos": {}
+        }
+      ]
+    },
+    {
+      "id": "F2",
+      "texto": "La escalera de caracol está a oscuras. Arriba espera la lámpara del faro.",
+      "final": false,
+      "opciones": [
+        {
+          "id": "subir_con_luz",
+          "texto": "Subir iluminando los peldaños",
+          "destino": "F3",
+          "condiciones": { "tiene_linterna": true },
+          "efectos": {}
+        },
+        {
+          "id": "subir_a_oscuras",
+          "texto": "Subir a tientas",
+          "destino": "F4",
+          "condiciones": { "tiene_linterna": false },
+          "efectos": {}
+        }
+      ]
+    },
+    {
+      "id": "F3",
+      "texto": "Con la linterna llegas a la lámpara y la enciendes. El barco encuentra el puerto a tiempo.",
+      "final": true,
+      "opciones": []
+    },
+    {
+      "id": "F4",
+      "texto": "Subes a tientas y tropiezas. Cuando por fin se enciende la lámpara, el barco ya pasó de largo.",
+      "final": true,
+      "opciones": []
+    }
+  ]
+}
