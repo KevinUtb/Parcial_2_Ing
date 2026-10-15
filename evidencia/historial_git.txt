@@ -1,0 +1,18 @@
+﻿0254260 | KevinUtb <acunak@utb.edu.co> | 2026-10-15 01:17:20 -0500 | [SC01] Pruebas U6, U5 e I1 extendidas y evidencias (HEAD -> main, tag: version-final, origin/main, origin/HEAD)
+791ea79 | KevinUtb <acunak@utb.edu.co> | 2026-10-15 01:17:05 -0500 | [SC01] Deshacer la ├║ltima decisi├│n en motor y consola
+1e0b8c2 | KevinUtb <acunak@utb.edu.co> | 2026-10-15 01:16:48 -0500 | [SC01] An├ílisis de impacto y requisitos RF12 a RF14
+f8bd345 | KevinUtb <acunak@utb.edu.co> | 2026-10-15 01:04:14 -0500 | [SC01] Requisitos RF12 a RF14 y RF09 modificado
+d91efc9 | KevinUtb <acunak@utb.edu.co> | 2026-10-15 00:58:48 -0500 | Elimina Informe.pdf (tag: version-inicial)
+935500e | ValeryAurela <vaurela@utb.edu.co> | 2026-10-15 00:12:44 -0500 | Agregar documentos PDF
+754447a | KevinUtb <acunak@utb.edu.co> | 2026-10-14 23:11:02 -0500 | [Segunda historia][RNF01] Agrega El faro apagado, pruebas y simulador de partidas
+3891d3f | ValeryAurela <vaurela@utb.edu.co> | 2026-10-14 22:58:27 -0500 | Agrega modelos Mermaid, decisiones de arquitectura, README y anexo de diagramas (tag: antes-segunda-historia)
+a93ac9c | KevinUtb <acunak@utb.edu.co> | 2026-10-14 21:48:24 -0500 | [Pruebas] U1 a U5, validaciones, CA03, BOM e I1
+2c7c819 | KevinUtb <acunak@utb.edu.co> | 2026-10-14 20:59:34 -0500 | [Pruebas] U4 (validaciones), CA03, BOM e I1
+e7cdb00 | KevinUtb <acunak@utb.edu.co> | 2026-10-14 20:59:16 -0500 | [Pruebas] U1, U2, U3, U5 y bloqueo del motor
+c6c9fce | KevinUtb <acunak@utb.edu.co> | 2026-10-14 20:28:46 -0500 | [Implementar motor] Sesi├│n, opciones habilitadas, elegir y reiniciar; consola
+62be7b5 | KevinUtb <acunak@utb.edu.co> | 2026-10-14 20:26:29 -0500 | [Cargador] Acepta JSON con BOM (utf-8-sig) en archivos editados en Windows
+add8309 | KevinUtb <acunak@utb.edu.co> | 2026-10-14 20:09:10 -0500 | [P01-03][D01] Registra preguntas, supuestos y defecto de E3
+2a7d3b9 | KevinUtb <acunak@utb.edu.co> | 2026-10-14 19:59:15 -0500 | [RF01-11][RNF01-03] Documenta requisitos funcionales y no funcionales
+6761cbd | KevinUtb <acunak@utb.edu.co> | 2026-10-14 19:02:42 -0500 | Merge branch 'main' of https://github.com/KevinUtb/Parcial_2_Ing
+c267ef6 | KevinUtb <acunak@utb.edu.co> | 2026-10-14 18:43:59 -0500 | Estructura inicial del proyecto
+b71c7ac | KevinUtb <acunak@utb.edu.co> | 2026-10-14 18:10:20 -0500 | Initial commit

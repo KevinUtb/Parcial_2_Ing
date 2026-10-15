@@ -1,0 +1,2 @@
+﻿Comando: git diff --stat antes-segunda-historia version-inicial -- src/
+Resultado: sin cambios (0 archivos modificados)
