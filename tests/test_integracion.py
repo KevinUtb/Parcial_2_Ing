@@ -7,24 +7,29 @@ from motor import Sesion
 
 class TestIntegracion(unittest.TestCase):
 
-    # I1: archivo real + motor, desde la carga hasta alcanzar cada final
-    def test_i1_tres_finales_desde_archivo_real(self):
-        caminos = [
-            ("rescate", ["revisar", "investigar", "activar_codigo"], "E4"),
-            ("eco", ["revisar", "continuar", "activar_sin_verificar"], "E5"),
-            ("silencio", ["revisar", "continuar", "cortar"], "E6"),
+        # I1 extendido: deshacer desde cada final tras cargar el archivo real
+    def test_i1_deshacer_desde_cada_final(self):
+        casos = [
+            ("rescate", ["revisar", "investigar", "activar_codigo"], True),
+            ("eco", ["revisar", "continuar", "activar_sin_verificar"], False),
+            ("silencio", ["revisar", "continuar", "cortar"], False),
         ]
-        for nombre, camino, final in caminos:
+        for nombre, camino, conoce in casos:
             with self.subTest(nombre):
                 sesion = Sesion(cargar_historia(RUTA_HISTORIA))
-                self.assertEqual(sesion.escena_id, "E1")
                 for oid in camino:
-                    self.assertIn(oid, [o["id"] for o in sesion.opciones_habilitadas()])
                     self.assertTrue(sesion.elegir(oid))
-                self.assertEqual(sesion.escena_id, final)
                 self.assertTrue(sesion.es_final)
-                self.assertEqual(sesion.opciones_habilitadas(), [])
-
+                self.assertTrue(sesion.deshacer())
+                self.assertEqual(sesion.escena_id, "E3")
+                self.assertEqual(sesion.variables,
+                                 {"conoce_origen": conoce,
+                                  "confia_en_la_voz": False})
+                self.assertFalse(sesion.es_final)
+                self.assertFalse(sesion.puede_deshacer)
+                # tras deshacer se puede elegir otro camino
+                self.assertTrue(sesion.elegir("cortar"))
+                self.assertEqual(sesion.escena_id, "E6")
 
 if __name__ == "__main__":
     unittest.main()

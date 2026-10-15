@@ -5,13 +5,18 @@ test_u4_archivo_ilegible (test_cargador.TestCargador.test_u4_archivo_ilegible) .
 test_u4_archivo_inexistente (test_cargador.TestCargador.test_u4_archivo_inexistente) ... ok
 test_u4_errores_de_contenido (test_cargador.TestCargador.test_u4_errores_de_contenido) ... ok
 test_u4_estructura_incorrecta (test_cargador.TestCargador.test_u4_estructura_incorrecta) ... ok
-test_i1_tres_finales_desde_archivo_real (test_integracion.TestIntegracion.test_i1_tres_finales_desde_archivo_real) ... ok
+test_i1_deshacer_desde_cada_final (test_integracion.TestIntegracion.test_i1_deshacer_desde_cada_final) ... ok
 test_bloqueo_en_escena_no_final (test_motor.TestMotor.test_bloqueo_en_escena_no_final) ... ok
 test_e3_siempre_dos_opciones (test_motor.TestMotor.test_e3_siempre_dos_opciones) ... ok
 test_u1_condiciones (test_motor.TestMotor.test_u1_condiciones) ... ok
 test_u2_eleccion_valida (test_motor.TestMotor.test_u2_eleccion_valida) ... ok
 test_u3_opcion_invalida_no_cambia_estado (test_motor.TestMotor.test_u3_opcion_invalida_no_cambia_estado) ... ok
 test_u5_reiniciar (test_motor.TestMotor.test_u5_reiniciar) ... ok
+test_u5_reiniciar_elimina_historial (test_motor.TestMotor.test_u5_reiniciar_elimina_historial) ... ok
+test_u6_deshacer_restaura_y_consume (test_motor.TestMotor.test_u6_deshacer_restaura_y_consume) ... ok
+test_u6_entrada_invalida_preserva_historial (test_motor.TestMotor.test_u6_entrada_invalida_preserva_historial) ... ok
+test_u6_nueva_eleccion_rehabilita_retroceso (test_motor.TestMotor.test_u6_nueva_eleccion_rehabilita_retroceso) ... ok
+test_u6_sin_retroceso_al_comenzar (test_motor.TestMotor.test_u6_sin_retroceso_al_comenzar) ... ok
 test_carga_valida_sin_errores (test_segunda_historia.TestSegundaHistoria.test_carga_valida_sin_errores) ... ok
 test_condicion_cambia_las_opciones (test_segunda_historia.TestSegundaHistoria.test_condicion_cambia_las_opciones) ... ok
 test_finales (test_segunda_historia.TestSegundaHistoria.test_finales) ... ok
@@ -19,6 +24,6 @@ test_motor_no_contiene_datos_de_las_historias (test_segunda_historia.TestSegunda
 RNF03: el motor no conoce IDs ni variables de ninguna historia. ... ok
 
 ----------------------------------------------------------------------
-Ran 18 tests in 0.010s
+Ran 23 tests in 0.016s
 
 OK

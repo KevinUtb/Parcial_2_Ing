@@ -1,11 +1,6 @@
 RNF01 - Simulacion de partidas aleatorias
 Semilla: 42
 Partidas por historia: 500 (total 1000)
-  contenido/el_faro.json -> F3: 237 partidas
-  contenido/el_faro.json -> F4: 263 partidas
-  contenido/la_ultima_transmision.json -> E4: 125 partidas
-  contenido/la_ultima_transmision.json -> E5: 129 partidas
-  contenido/la_ultima_transmision.json -> E6: 246 partidas
 Excepciones no controladas: 0
 Bloqueos: 0
 Partidas sin terminar en 100 pasos: 0

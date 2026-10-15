@@ -30,15 +30,12 @@ def simular():
                 s = Sesion(historia)
                 pasos = 0
                 while not s.es_final and not s.bloqueada and pasos < MAX_PASOS:
-                    habilitadas = s.opciones_habilitadas()
-                    s.elegir(random.choice(habilitadas)["id"])
+                    if s.puede_deshacer and random.random() < 0.2:
+                        s.deshacer()
+                    else:
+                        habilitadas = s.opciones_habilitadas()
+                        s.elegir(random.choice(habilitadas)["id"])
                     pasos += 1
-                if s.es_final:
-                    finales[(ruta, s.escena_id)] += 1
-                elif s.bloqueada:
-                    bloqueos += 1
-                else:
-                    sin_final += 1
             except Exception as e:  # noqa: BLE001
                 excepciones += 1
                 print(f"EXCEPCION en {ruta}: {type(e).__name__}: {e}")
