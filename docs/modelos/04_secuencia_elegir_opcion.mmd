@@ -1,0 +1,28 @@
+%% Secuencia de "elegir una opción" (Unidad 5), según consola.jugar() y Sesion.elegir().
+%% Desde la consola solo se puede enviar una opción habilitada (el número indexa la lista filtrada).
+%% El caso "no habilitada" llega a Sesion.elegir() al llamarlo directo (CA02, test U3).
+sequenceDiagram
+    actor Lector
+    participant Consola as consola.jugar
+    participant Sesion as motor.Sesion
+
+    Consola->>Sesion: opciones_habilitadas()
+    Sesion-->>Consola: lista de opciones cuyas condiciones se cumplen
+    Consola->>Lector: escena actual y opciones numeradas
+    Lector->>Consola: número
+    alt número fuera de rango o no numérico
+        Consola->>Lector: "Opción no válida. Intenta de nuevo."
+    else número válido
+        Consola->>Sesion: elegir(opcion_id)
+        Sesion->>Sesion: opciones_habilitadas()
+        alt opcion_id está entre las habilitadas
+            Sesion->>Sesion: variables.update(efectos)
+            Sesion->>Sesion: escena_id = destino
+            Sesion-->>Consola: True
+        else inexistente o no habilitada
+            Note over Sesion: escena_id y variables quedan intactos
+            Sesion-->>Consola: False
+        end
+        Consola->>Sesion: es_final, bloqueada, opciones_habilitadas()
+        Consola->>Lector: nueva escena (o fin / bloqueo)
+    end

@@ -1,0 +1,14 @@
+%% Estados de una sesión (Unidad 5). Los tres estados son DERIVADOS, no se guardan:
+%%   Jugando   = not es_final and opciones_habilitadas() no vacía
+%%   Final     = es_final (la escena actual tiene final = true)
+%%   Bloqueada = bloqueada (not es_final y sin opciones habilitadas)
+%% elegir() en Final o Bloqueada devuelve False y no cambia nada (no hay opciones habilitadas).
+%% elegir() inexistente o no habilitada en Jugando devuelve False y no cambia nada (RF06).
+stateDiagram-v2
+    direction LR
+    [*] --> Jugando : Sesion() / reiniciar()
+    Jugando --> Jugando : elegir válida (destino con opciones)
+    Jugando --> Final : elegir válida (destino final)
+    Jugando --> Bloqueada : elegir válida (destino sin opciones habilitadas)
+    Final --> Jugando : reiniciar()
+    Bloqueada --> Jugando : reiniciar()

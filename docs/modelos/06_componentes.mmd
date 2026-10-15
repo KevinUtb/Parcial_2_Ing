@@ -1,0 +1,22 @@
+%% Componentes y capas (Unidad 6). Dependencias reales por import:
+%%   consola.py importa cargador y motor; motor.py no importa nada; tests importan cargador y motor.
+%% El motor y el cargador no conocen la consola; el motor no conoce el formato JSON ni la validación.
+flowchart TB
+    subgraph Interfaz["Capa de interfaz"]
+        Consola["consola.py<br/>jugar(), main()<br/>Lee teclado, imprime, reporta errores de contenido"]
+    end
+    subgraph Reglas["Capa de reglas"]
+        Motor["motor.py · Sesion<br/>Estado de la partida, condiciones, efectos,<br/>finales, bloqueo y reinicio"]
+        Cargador["cargador.py<br/>cargar_historia(), validar_historia(), ErrorContenido<br/>Lee JSON y valida el contenido"]
+    end
+    subgraph Contenido["Capa de contenido"]
+        JSON[("contenido/*.json<br/>Historias: escenas, opciones,<br/>condiciones y efectos")]
+    end
+    Pruebas["tests/ (unittest)<br/>test_motor, test_cargador, test_integracion, base"]
+
+    Consola -- "cargar_historia(ruta) devuelve la historia (dict)" --> Cargador
+    Consola -- "Sesion(historia)" --> Motor
+    Cargador -- "lee" --> JSON
+    Pruebas -. "prueban" .-> Motor
+    Pruebas -. "prueban" .-> Cargador
+    Pruebas -. "leen" .-> JSON

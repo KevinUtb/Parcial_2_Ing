@@ -1,0 +1,20 @@
+%% Diagrama de contexto (Unidad 5). Frontera: lo que está dentro del recuadro es el sistema entregado.
+%% Fuera de alcance (guía, sección 1): cuentas, base de datos, guardado, red, audio, imágenes.
+flowchart LR
+    Lector(["Lector"])
+    Escritor(["Escritor"])
+    Coord(["Coordinadora del festival"])
+    JSON[("Archivo JSON de historia<br/>contenido/*.json")]
+
+    subgraph Sistema["Motor de historias interactivas (Python, solo biblioteca estándar)"]
+        Consola["Interfaz de consola<br/>src/consola.py"]
+        Nucleo["Cargador/validador + Motor<br/>src/cargador.py, src/motor.py"]
+        Consola --> Nucleo
+    end
+
+    Escritor -- "redacta y edita" --> JSON
+    JSON -- "se lee al iniciar" --> Nucleo
+    Lector -- "elige opciones, decide si reinicia" --> Consola
+    Consola -- "escena, opciones, finales, bloqueo" --> Lector
+    Consola -- "errores de contenido" --> Escritor
+    Consola -- "errores de contenido" --> Coord

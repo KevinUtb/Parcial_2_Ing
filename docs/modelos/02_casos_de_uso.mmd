@@ -1,0 +1,26 @@
+%% Casos de uso (Unidad 5), con los RF de docs/requisitos.md.
+%% Mermaid no tiene diagrama de casos de uso nativo: se modela con flowchart.
+flowchart LR
+    Lector(["Lector"])
+    Escritor(["Escritor"])
+    Coord(["Coordinadora del festival"])
+
+    subgraph Sistema["Motor de historias interactivas"]
+        UC1("Cargar historia<br/>RF01, RF02")
+        UC2("Validar contenido<br/>RF10")
+        UC3("Recibir errores de contenido<br/>RF10")
+        UC4("Ver escena y opciones habilitadas<br/>RF03, RF04, RF08, RF11")
+        UC5("Elegir opción<br/>RF05, RF06, RF07")
+        UC6("Reiniciar partida<br/>RF09")
+    end
+
+    Lector --- UC1
+    Escritor --- UC1
+    Escritor --- UC3
+    Coord --- UC3
+    Lector --- UC4
+    Lector --- UC5
+    Lector --- UC6
+
+    UC1 -. "«include»" .-> UC2
+    UC3 -. "«extend» si hay errores" .-> UC2

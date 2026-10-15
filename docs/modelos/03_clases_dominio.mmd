@@ -1,0 +1,57 @@
+%% Clases del dominio (Unidad 5), según src/motor.py y src/cargador.py.
+%% Historia, Escena y Opcion NO son clases en el código: son diccionarios (dict) leídos del JSON.
+%% Se modelan como clases del dominio con su estructura de datos real.
+classDiagram
+    direction LR
+    class Historia {
+        <<dict JSON>>
+        titulo : str
+        inicio : str
+        variables : dict
+        escenas : list
+    }
+    class Escena {
+        <<dict JSON>>
+        id : str
+        texto : str
+        final : bool
+        opciones : list
+    }
+    class Opcion {
+        <<dict JSON>>
+        id : str
+        texto : str
+        destino : str
+        condiciones : dict
+        efectos : dict
+    }
+    class Sesion {
+        _historia : dict
+        _escenas : dict
+        escena_id : str
+        variables : dict
+        escena : dict
+        es_final : bool
+        bloqueada : bool
+        reiniciar()
+        opciones_habilitadas() list
+        elegir(opcion_id) bool
+        _habilitada(opcion) bool
+    }
+    class ErrorContenido {
+        <<Exception>>
+        errores : list
+    }
+    class cargador {
+        <<módulo>>
+        cargar_historia(ruta) dict
+        validar_historia(datos) list
+    }
+
+    Historia "1" *-- "1..*" Escena : escenas
+    Escena "1" *-- "0..*" Opcion : opciones
+    Opcion ..> Escena : destino (id)
+    Sesion --> Historia : juega
+    cargador ..> Historia : devuelve
+    cargador ..> ErrorContenido : lanza
+    note for Sesion "escena, es_final y bloqueada son @property (solo lectura). _habilitada es privado."
