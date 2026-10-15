@@ -1,4 +1,4 @@
-%% Clases del dominio (Unidad 5), según src/motor.py y src/cargador.py.
+%% Clases del dominio (Unidad 5), según src/motor.py y src/cargador.py. Actualizado con SC01.
 %% Historia, Escena y Opcion NO son clases en el código: son diccionarios (dict) leídos del JSON.
 %% Se modelan como clases del dominio con su estructura de datos real.
 classDiagram
@@ -30,12 +30,15 @@ classDiagram
         _escenas : dict
         escena_id : str
         variables : dict
+        _anterior : tuple
         escena : dict
         es_final : bool
         bloqueada : bool
+        puede_deshacer : bool
         reiniciar()
         opciones_habilitadas() list
         elegir(opcion_id) bool
+        deshacer() bool
         _habilitada(opcion) bool
     }
     class ErrorContenido {
@@ -54,4 +57,4 @@ classDiagram
     Sesion --> Historia : juega
     cargador ..> Historia : devuelve
     cargador ..> ErrorContenido : lanza
-    note for Sesion "escena, es_final y bloqueada son @property (solo lectura). _habilitada es privado."
+    note for Sesion "escena, es_final, bloqueada y puede_deshacer son @property (solo lectura). _habilitada es privado. _anterior es None o la tupla (escena_id, copia de variables): instantánea de un solo nivel. puede_deshacer es verdadero si _anterior no es None."

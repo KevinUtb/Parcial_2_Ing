@@ -1,11 +1,14 @@
-%% Secuencia de "elegir una opción" (Unidad 5), según consola.jugar() y Sesion.elegir().
+%% Secuencia de "elegir una opción" y de "deshacer" (Unidad 5), según consola.jugar(), Sesion.elegir() y Sesion.deshacer().
 %% Desde la consola solo se puede enviar una opción habilitada (el número indexa la lista filtrada).
-%% El caso "no habilitada" llega a Sesion.elegir() al llamarlo directo (CA02, test U3).
+%% El caso "no habilitada" llega a Sesion.elegir() al llamarlo directo (CA02, test U3, test U6).
+%% SC01: elegir guarda la instantánea ANTES de aplicar efectos; deshacer la restaura y la consume (un solo nivel).
 sequenceDiagram
     actor Lector
     participant Consola as consola.jugar
     participant Sesion as motor.Sesion
 
+    rect rgb(235, 242, 250)
+    Note over Lector,Sesion: Elegir una opción
     Consola->>Sesion: opciones_habilitadas()
     Sesion-->>Consola: lista de opciones cuyas condiciones se cumplen
     Consola->>Lector: escena actual y opciones numeradas
@@ -16,13 +19,31 @@ sequenceDiagram
         Consola->>Sesion: elegir(opcion_id)
         Sesion->>Sesion: opciones_habilitadas()
         alt opcion_id está entre las habilitadas
+            Sesion->>Sesion: _anterior = (escena_id, copia de variables)
             Sesion->>Sesion: variables.update(efectos)
             Sesion->>Sesion: escena_id = destino
             Sesion-->>Consola: True
         else inexistente o no habilitada
-            Note over Sesion: escena_id y variables quedan intactos
+            Note over Sesion: escena_id, variables y _anterior quedan intactos (RF14)
             Sesion-->>Consola: False
         end
         Consola->>Sesion: es_final, bloqueada, opciones_habilitadas()
         Consola->>Lector: nueva escena (o fin / bloqueo)
+    end
+    end
+
+    rect rgb(250, 242, 232)
+    Note over Lector,Sesion: Deshacer la última decisión (opción 0 en una escena jugable, d en un final o bloqueo)
+    Consola->>Sesion: puede_deshacer
+    Sesion-->>Consola: True si _anterior no es None
+    alt puede_deshacer es verdadero y el lector pide deshacer
+        Lector->>Consola: 0 (o d)
+        Consola->>Sesion: deshacer()
+        Sesion->>Sesion: escena_id, variables = _anterior
+        Sesion->>Sesion: _anterior = None
+        Sesion-->>Consola: True
+        Consola->>Lector: escena anterior con sus variables restauradas
+    else no hay retroceso disponible
+        Note over Consola,Lector: la consola no ofrece 0 ni d. Si se invoca deshacer() directo, devuelve False y el estado no cambia
+    end
     end

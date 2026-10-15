@@ -1,4 +1,4 @@
-%% Casos de uso (Unidad 5), con los RF de docs/requisitos.md.
+%% Casos de uso (Unidad 5), con los RF de docs/requisitos.md. Actualizado con SC01 (RF12 a RF14).
 %% Mermaid no tiene diagrama de casos de uso nativo: se modela con flowchart.
 flowchart LR
     Lector(["Lector"])
@@ -12,6 +12,7 @@ flowchart LR
         UC4("Ver escena y opciones habilitadas<br/>RF03, RF04, RF08, RF11")
         UC5("Elegir opción<br/>RF05, RF06, RF07")
         UC6("Reiniciar partida<br/>RF09")
+        UC7("Deshacer decisión<br/>RF12, RF13, RF14")
     end
 
     Lector --- UC1
@@ -21,6 +22,7 @@ flowchart LR
     Lector --- UC4
     Lector --- UC5
     Lector --- UC6
+    Lector --- UC7
 
     UC1 -. "«include»" .-> UC2
     UC3 -. "«extend» si hay errores" .-> UC2

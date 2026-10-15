@@ -1,14 +1,29 @@
-%% Estados de una sesión (Unidad 5). Los tres estados son DERIVADOS, no se guardan:
+%% Estados de una sesión (Unidad 5). Actualizado con SC01.
+%% Los estados son DERIVADOS, no se guardan:
 %%   Jugando   = not es_final and opciones_habilitadas() no vacía
 %%   Final     = es_final (la escena actual tiene final = true)
 %%   Bloqueada = bloqueada (not es_final y sin opciones habilitadas)
-%% elegir() en Final o Bloqueada devuelve False y no cambia nada (no hay opciones habilitadas).
-%% elegir() inexistente o no habilitada en Jugando devuelve False y no cambia nada (RF06).
+%% "Con retroceso" = puede_deshacer (_anterior is not None); "sin retroceso" = _anterior is None.
+%% Final y Bloqueada se alcanzan por una elección válida, así que normalmente tienen retroceso.
+%% Caso límite: si la escena inicial es final o está bloqueada, no hay retroceso y solo se puede reiniciar.
+%% elegir() inexistente o no habilitada devuelve False y no cambia nada, ni el historial (RF06, RF14).
+%% deshacer() sin retroceso devuelve False y no cambia nada (RF13).
 stateDiagram-v2
     direction LR
-    [*] --> Jugando : Sesion() / reiniciar()
-    Jugando --> Jugando : elegir válida (destino con opciones)
-    Jugando --> Final : elegir válida (destino final)
-    Jugando --> Bloqueada : elegir válida (destino sin opciones habilitadas)
-    Final --> Jugando : reiniciar()
-    Bloqueada --> Jugando : reiniciar()
+    state "Jugando sin retroceso" as SinRet
+    state "Jugando con retroceso" as ConRet
+
+    [*] --> SinRet : Sesion() / reiniciar()
+    SinRet --> SinRet : deshacer() sin historial
+    SinRet --> ConRet : elegir válida (destino con opciones)
+    SinRet --> Final : elegir válida (destino final)
+    SinRet --> Bloqueada : elegir válida (destino sin opciones)
+
+    ConRet --> ConRet : elegir inválida (conserva historial)
+    ConRet --> ConRet : elegir válida (destino con opciones, nueva instantánea)
+    ConRet --> Final : elegir válida (destino final)
+    ConRet --> Bloqueada : elegir válida (destino sin opciones)
+    ConRet --> SinRet : deshacer() o reiniciar()
+
+    Final --> SinRet : deshacer() o reiniciar()
+    Bloqueada --> SinRet : deshacer() o reiniciar()

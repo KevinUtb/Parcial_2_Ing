@@ -39,3 +39,6 @@ alcance pedido (un solo nivel, sin rehacer).
   `tests/test_motor.py`; `test_i1_deshacer_desde_cada_final` en
   `tests/test_integracion.py`
 - Registro de ejecución: `evidencia/ultima_ejecucion.txt`
+
+## Revisión tras SC01 (deshacer)
+AD-01 y AD-02 no cambian: el retroceso vive en `Sesion` (`motor.py`) sin IDs de historias ni formato JSON, y `cargador.py` no se modificó. La decisión de diseño del cambio (instantánea de un nivel; pila descartada) está en `docs/cambio.md`.
